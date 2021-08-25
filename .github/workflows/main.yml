@@ -14,32 +14,32 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  # build:
-  #   # The type of runner that the job will run on
-  #   runs-on: ubuntu-latest
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-  #   # Steps represent a sequence of tasks that will be executed as part of the job
-  #   steps:
-  #     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-  #     - uses: actions/checkout@v2
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-  #     - name: docker login
-  #       env:
-  #         DOCKER_USER: ${{ secrets.DOCKER_USER }}
-  #         DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+      - name: docker login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
-  #       run: |
-  #         echo $DOCKER_ACCESS_TOKEN | docker login ghcr.io --username $DOCKER_USER --password-stdin
-  #     # Runs a single command using the runners shell
-  #     - name: docker build
-  #       run: |
-  #         docker build . -t angularssr-nest-todo
-  #     - name: tag the build
-  #       run: |
-  #         docker tag angularssr-nest-todo ghcr.io/mohamednaga7/angularssr-nest-todo
-  #     - name: docker push
-  #       run: |
-  #         docker push ghcr.io/mohamednaga7/angularssr-nest-todo
+        run: |
+          echo $DOCKER_ACCESS_TOKEN | docker login ghcr.io --username $DOCKER_USER --password-stdin
+      # Runs a single command using the runners shell
+      - name: docker build
+        run: |
+          docker build . -t angularssr-nest-todo
+      - name: tag the build
+        run: |
+          docker tag angularssr-nest-todo ghcr.io/mohamednaga7/angularssr-nest-todo
+      - name: docker push
+        run: |
+          docker push ghcr.io/mohamednaga7/angularssr-nest-todo
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -49,8 +49,11 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
+          env:
+            DOCKER_USER: ${{ secrets.DOCKER_USER }}
+            DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
           script: |
-            echo ${{secrets.DOCKER_ACCESS_TOKEN}} | docker login ghcr.io --username ${{secrets.DOCKER_USER }} --password-stdin
+            echo $DOCKER_ACCESS_TOKEN | docker login ghcr.io --username $DOCKER_USER --password-stdin
             docker stop angularssr-nest-todo
             docker rm angularssr-nest-todo
             docker pull ghcr.io/mohamednaga7/angularssr-nest-todo
