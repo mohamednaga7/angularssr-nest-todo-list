@@ -44,13 +44,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SSH and deploy to the server
-        uses: fifsky/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USERNAME }}
-          pass: ${{ secrets.SSH_PASSWORD }}
-          command: |
-            echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login ghcr.io --username ${{ secrets.DOCKER_USER }} --password-stdin
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            echo ${{secrets.DOCKER_ACCESS_TOKEN}} | docker login ghcr.io --username ${{secrets.DOCKER_USER }} --password-stdin
             docker stop angularssr-nest-todo
             docker rm angularssr-nest-todo
             docker pull ghcr.io/mohamednaga7/angularssr-nest-todo
