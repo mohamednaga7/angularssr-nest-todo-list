@@ -49,7 +49,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
             echo $DOCKER_ACCESS_TOKEN | docker login ghcr.io --username $DOCKER_USER --password-stdin
             docker stop angularssr-nest-todo
