@@ -1,0 +1,16 @@
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #000;
+
+    h1 {
+        color: #fff;
+        font-family: cursive, sans-serif;
+        font-size: 4rem;
+        margin-bottom: 5rem;
+    }
+}

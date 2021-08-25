@@ -1,0 +1,25 @@
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    &.done {
+        .todo-item-text {
+            text-decoration: line-through;
+        }
+    }
+
+    .todo-item-text {
+        color: #fff;
+        margin-right: 2rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .delete-button {
+        color: red;
+        cursor: pointer;
+    }
+}

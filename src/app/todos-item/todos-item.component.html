@@ -1,0 +1,4 @@
+<div  *ngIf="todo" (click)="handleToggleTodo()" class="todo-item {{todo.done ? 'done' : ''}}">
+    <p class="todo-item-text">{{todo.title}}</p>
+    <span class="delete-button" (click)="handleDelete($event)">X</span>
+</div>
