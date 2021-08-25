@@ -50,7 +50,7 @@ jobs:
           user: ${{ secrets.SSH_USERNAME }}
           pass: ${{ secrets.SSH_PASSWORD }}
           command: |
-            echo $DOCKER_ACCESS_TOKEN | docker login ghcr.io --username $DOCKER_USER --password-stdin
+            echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login ghcr.io --username ${{ secrets.DOCKER_USER }} --password-stdin
             docker stop angularssr-nest-todo
             docker rm angularssr-nest-todo
             docker pull ghcr.io/mohamednaga7/angularssr-nest-todo
