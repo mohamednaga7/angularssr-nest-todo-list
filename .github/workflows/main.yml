@@ -51,7 +51,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
+            echo $DOCKER_ACCESS_TOKEN | docker login ghcr.io --username $DOCKER_USER --password-stdin
             docker stop angularssr-nest-todo
             docker rm angularssr-nest-todo
             docker pull ghcr.io/mohamednaga7/angularssr-nest-todo
-            docker run -dp 4200:4200 --build --name angularssr-nest-todo angularssr-nest-todo
+            docker run -dp 4200:4200 --name angularssr-nest-todo ghcr.io/mohamednaga7/angularssr-nest-todo
