@@ -41,6 +41,7 @@ jobs:
         run: |
           docker push ghcr.io/mohamednaga7/angularssr-nest-todo
   deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: SSH and deploy to the server
