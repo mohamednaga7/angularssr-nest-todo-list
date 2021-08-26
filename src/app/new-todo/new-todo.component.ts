@@ -7,13 +7,12 @@ import { NgForm } from '@angular/forms';
   templateUrl: './new-todo.component.html',
   styleUrls: ['./new-todo.component.scss'],
 })
-export class NewTodoComponent implements OnInit {
+export class NewTodoComponent {
   callInProgress: boolean = false;
   todoText: string = '';
 
-  constructor(private todosService: TodosService) {}
+  constructor(private todosService: TodosService) { }
 
-  ngOnInit(): void {}
 
   async onSubmit(f: NgForm) {
     this.callInProgress = true;

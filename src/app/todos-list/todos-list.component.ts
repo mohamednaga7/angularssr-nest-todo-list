@@ -1,7 +1,6 @@
 import { TodosService } from './../services/todos.service';
 import { Todo } from './../models/todo.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-todos-list',
@@ -12,7 +11,7 @@ export class TodosListComponent implements OnInit, OnDestroy {
   todos: Todo[] = [];
   callInProgress: boolean = false;
 
-  constructor(private todosService: TodosService) {}
+  constructor(private todosService: TodosService) { }
 
   ngOnDestroy(): void {
     this.todosService.todos.unsubscribe();

@@ -6,14 +6,10 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './todos-item.component.html',
   styleUrls: ['./todos-item.component.scss'],
 })
-export class TodosItemComponent implements OnInit {
+export class TodosItemComponent {
   @Input() todo: Todo | undefined;
   @Output() todoToggled = new EventEmitter<{ todoId: string; done: boolean }>();
   @Output() todoDeleted = new EventEmitter<string>();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   handleToggleTodo() {
     this.todo &&
