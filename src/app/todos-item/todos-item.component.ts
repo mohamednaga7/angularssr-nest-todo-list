@@ -13,11 +13,12 @@ export class TodosItemComponent {
 
   handleToggleTodo() {
     this.todo &&
-      this.todoToggled.emit({ todoId: this.todo.id, done: !this.todo.done });
+      this.todoToggled.emit({ todoId: this.todo._id, done: !this.todo.done });
   }
 
   handleDelete(event: any) {
     event.stopPropagation();
-    this.todoDeleted.emit(this.todo?.id);
+    this.todo &&
+      this.todoDeleted.emit(this.todo._id);
   }
 }

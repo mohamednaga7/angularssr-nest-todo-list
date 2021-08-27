@@ -18,7 +18,7 @@ export class TodosService {
   constructor(
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: any
-  ) {}
+  ) { }
 
   getTodos() {
     this.callInProgress.next(true);
@@ -59,7 +59,7 @@ export class TodosService {
       .toPromise()
       .then((returnedTodo: Todo) => {
         const newTodos = this.todos.value.map((td) => {
-          if (td.id === todoId) {
+          if (td._id === todoId) {
             td.done = returnedTodo.done;
           }
           return td;
@@ -80,7 +80,7 @@ export class TodosService {
       .toPromise()
       .then(() => {
         this.todos.next(
-          this.todos.value.filter((todo: Todo) => todo.id != todoId)
+          this.todos.value.filter((todo: Todo) => todo._id != todoId)
         );
         this.callInProgress.next(false);
       })

@@ -55,4 +55,8 @@ jobs:
             docker stop angularssr-nest-todo
             docker rm angularssr-nest-todo
             docker pull ghcr.io/mohamednaga7/angularssr-nest-todo
-            docker run -dp 4200:4200 --name angularssr-nest-todo ghcr.io/mohamednaga7/angularssr-nest-todo
+            docker run -dp 4200:4200 -e DB_HOST='${{ secrets.DB_HOST }}' -e DB_NAME='${{ secrets.DB_NAME }}' -e DB_USERNAME='${{ secrets.DB_USERNAME }}' -e DB_PASSWORD='${{ secrets.DB_PASSWORD }}' --name angularssr-nest-todo ghcr.io/mohamednaga7/angularssr-nest-todo
+              
+
+
+
