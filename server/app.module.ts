@@ -15,7 +15,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
     AngularUniversalModule.forRoot({
       bootstrap: AppServerModule,
-      viewsPath: join(process.cwd(), 'dist/blog/browser'),
+      viewsPath: join(process.cwd(), 'dist/todos/browser'),
     }),
     TodosModule,
   ],

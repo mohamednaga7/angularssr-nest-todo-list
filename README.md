@@ -1,6 +1,6 @@
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=mohamednaga7_angularssr-nest-todo-list)](https://sonarcloud.io/dashboard?id=mohamednaga7_angularssr-nest-todo-list)
 
-# Blog
+# Todos
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
 

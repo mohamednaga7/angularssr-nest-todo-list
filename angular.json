@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "blog": {
+    "todos": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/blog/browser",
+            "outputPath": "dist/todos/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "blog:build:production"
+              "browserTarget": "todos:build:production"
             },
             "development": {
-              "browserTarget": "blog:build:development"
+              "browserTarget": "todos:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "blog:build"
+            "browserTarget": "todos:build"
           }
         },
         "test": {
@@ -110,7 +110,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/blog/server",
+            "outputPath": "dist/todos/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss",
@@ -145,12 +145,12 @@
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "blog:build:development",
-              "serverTarget": "blog:server:development"
+              "browserTarget": "todos:build:development",
+              "serverTarget": "todos:server:development"
             },
             "production": {
-              "browserTarget": "blog:build:production",
-              "serverTarget": "blog:server:production"
+              "browserTarget": "todos:build:production",
+              "serverTarget": "todos:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -164,12 +164,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "blog:build:production",
-              "serverTarget": "blog:server:production"
+              "browserTarget": "todos:build:production",
+              "serverTarget": "todos:server:production"
             },
             "development": {
-              "browserTarget": "blog:build:development",
-              "serverTarget": "blog:server:development"
+              "browserTarget": "todos:build:development",
+              "serverTarget": "todos:server:development"
             }
           },
           "defaultConfiguration": "production"
@@ -177,5 +177,5 @@
       }
     }
   },
-  "defaultProject": "blog"
+  "defaultProject": "todos"
 }

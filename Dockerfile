@@ -14,4 +14,4 @@ RUN npm run build:ssr
 
 EXPOSE 4200
 
-CMD ["pm2-runtime", "start", "node dist/blog/server/main.js"]
+CMD ["pm2-runtime", "start", "node dist/todos/server/main.js"]
