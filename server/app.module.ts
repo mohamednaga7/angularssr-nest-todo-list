@@ -4,8 +4,7 @@ import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { join } from 'path';
 import { AppServerModule } from '../src/main.server';
 import { TodosModule } from './todos/todos.module';
-import { ConfigModule } from '@nestjs/config';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
