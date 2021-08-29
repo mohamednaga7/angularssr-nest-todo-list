@@ -1,0 +1,10 @@
+<div class="signin-screen">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <input type="text" required name="usernameOrEmail" [(ngModel)]="usernameOrEmail">
+        <input type="password" required name="password" minlength="8" [(ngModel)]="password">
+        <div class="buttons">
+            <button type="submit">Sign In</button>
+            <button type="button" routerLink="/signup">or, Sign up</button>
+        </div>
+    </form>
+</div>

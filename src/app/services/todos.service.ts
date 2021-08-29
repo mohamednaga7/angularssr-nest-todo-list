@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Todo } from './../models/todo.model';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { isPlatformBrowser } from '@angular/common';
+import { NetworkService } from './network-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,20 +10,14 @@ export class TodosService {
   todos = new BehaviorSubject<Todo[]>([]);
   callInProgress = new Subject<boolean>();
 
-  apiUrl: string = isPlatformBrowser(this.platformId)
-    ? '/api'
-    : 'http://localhost:4200/api';
-
   constructor(
-    private http: HttpClient,
-    @Inject(PLATFORM_ID) private platformId: any
+    private networkService: NetworkService
   ) { }
 
   getTodos() {
     this.callInProgress.next(true);
-    return this.http
-      .get<Todo[]>(`${this.apiUrl}/todos`)
-      .toPromise()
+    return this.networkService
+      .get<Todo[]>(`todos`)
       .then((todos: Todo[]) => {
         this.todos.next(todos);
         this.callInProgress.next(false);
@@ -37,9 +30,8 @@ export class TodosService {
 
   addTodo(title: string) {
     this.callInProgress.next(true);
-    return this.http
-      .post<Todo>(`${this.apiUrl}/todos`, { title })
-      .toPromise()
+    return this.networkService
+      .post<Todo>(`todos`, { title })
       .then((todo: Todo) => {
         this.todos.next([todo, ...this.todos.value]);
         this.callInProgress.next(false);
@@ -52,11 +44,10 @@ export class TodosService {
 
   updateTodo(todoId: string, status: boolean) {
     this.callInProgress.next(true);
-    return this.http
-      .patch<Todo>(`${this.apiUrl}/todos/${todoId}`, {
+    return this.networkService
+      .patch<Todo>(`todos/${todoId}`, {
         done: status,
       })
-      .toPromise()
       .then((returnedTodo: Todo) => {
         const newTodos = this.todos.value.map((td) => {
           if (td._id === todoId) {
@@ -75,9 +66,8 @@ export class TodosService {
 
   deleteTodo(todoId: string) {
     this.callInProgress.next(true);
-    return this.http
-      .delete<Todo>(`${this.apiUrl}/todos/${todoId}`)
-      .toPromise()
+    return this.networkService
+      .delete<Todo>(`todos/${todoId}`)
       .then(() => {
         this.todos.next(
           this.todos.value.filter((todo: Todo) => todo._id != todoId)

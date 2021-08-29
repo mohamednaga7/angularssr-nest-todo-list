@@ -8,6 +8,10 @@ import { TodosItemComponent } from './todos-item/todos-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewTodoComponent } from './new-todo/new-todo.component';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { TodosComponent } from './todos/todos/todos.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +19,9 @@ import { FormsModule } from '@angular/forms';
     TodosListComponent,
     TodosItemComponent,
     NewTodoComponent,
+    SignupComponent,
+    SigninComponent,
+    TodosComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -22,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

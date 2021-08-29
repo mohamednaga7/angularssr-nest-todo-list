@@ -1,0 +1,16 @@
+<div class="signup-screen">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <input type="text" required name="firstName" placeholder="First Name" [(ngModel)]="firstName">
+        <input type="text" required name="lastName" placeholder="Last Name" [(ngModel)]="lastName">
+        <input type="email" required name="email" placeholder="Email" [(ngModel)]="email">
+        <input type="text" required name="username" placeholder="Username" [(ngModel)]="username">
+        <input type="password" required name="password" placeholder="Password" minlength="8" [(ngModel)]="password">
+        <input type="password" required name="confirmPassword" placeholder="Confirm Password" minlength="8"
+            [(ngModel)]="confirmPassword">
+        <input type="tel" name="phoneNumber" placeholder="Phone Number" [(ngModel)]="phoneNumber">
+        <div class="buttons">
+            <button type="submit">Sign Up</button>
+            <button type="button" routerLink="/signin">or, Sign In</button>
+        </div>
+    </form>
+</div>
