@@ -15,7 +15,7 @@ export class AuthService {
   signup(userSignUpDTO: CreateUserDto) {
     this.netWorkService.post<{ user: User, jwt: string }>('signup', userSignUpDTO)
       .then(({ user, jwt }: { user: User, jwt: string }) => {
-        localStorage.setItem('user', user.toJson());
+        localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('jwt', jwt);
         this.cookieService.set('jwt', jwt);
         return user;
@@ -28,7 +28,8 @@ export class AuthService {
   signin(userSignInDTO: RequestSignInDto) {
     this.netWorkService.post<{ user: User, jwt: string }>('signin', userSignInDTO)
       .then(({ user, jwt }: { user: User, jwt: string }) => {
-        localStorage.setItem('user', user.toJson());
+        console.log(user, jwt)
+        localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('jwt', jwt);
         this.cookieService.set('jwt', jwt);
         return user;
